@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools", "wheel", "setuptools-git-versioning"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools-git-versioning]
+enabled = true
+
+[project]
+name = "interai"
+dynamic = ["version"]
+authors = [
+    { name="Thomas Nelson", email="tn90ca@gmail.com" },
+]
+description = "A Python module for building applications with LLMs."
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: POSIX :: Linux",
+    "Natural Language :: English",
+    "Intended Audience :: Developers",
+    "Development Status :: 3 - Alpha",
+]
+dependencies = [
+    "annoy",
+    "beautifulsoup4",
+    "openai==0.27.0",
+    "pinecone-client",
+    "requests",
+    "sentence-transformers",
+    "validators",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest==7.2.1",
+    "pytest-xdist[psutil]==3.1.0",
+    "flake8==4.0.1",
+    "black==23.1.0",
+    "flake8-black==0.3.6",
+    "isort==5.12.0",
+    "flake8-isort==6.0.0",
+    "pep8-naming==0.13.2",
+    "pytest-flake8-v2==1.2.3",
+    "pytest-blockage==0.2.4",
+    "pytest-sugar==0.9.6",
+    "pytest-icdiff==0.6",
+    "pytest-cov==4.0.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Chippers255/interai"
+"Bug Tracker" = "https://github.com/Chippers255/interai/issues"
+
+[tool.black]
+line-length = 200
+target-version = ['py310']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.pytest.ini_options]
+addopts = """\
+    -ra \
+    --flake8 \
+    --cov=interai \
+    --cov-fail-under=80 \
+    --cov-report xml --cov-report term-missing:skip-covered \
+    -n auto \
+    --blockage"""
