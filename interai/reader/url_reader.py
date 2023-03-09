@@ -17,6 +17,8 @@ class URLReader(Reader):
 
     def read(self) -> str:
         page = requests.get(self.url)
+        if page.status_code != 200:
+            raise ValueError(f"unable to scrape url {self.url}, received http status {page.status_code}")
         soup = BeautifulSoup(page.content, "html.parser")
         text = soup.get_text()
         text = text.strip()
