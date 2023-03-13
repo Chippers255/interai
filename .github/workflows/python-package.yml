@@ -12,15 +12,18 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code from repository
+      uses: actions/checkout@v3
     - name: Setup Python
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
-    - name: Set up Python Environment
+    - name: Install dependancies
       run: |
         pip install --upgrade pip setuptools wheel
         pip install .[test]
     - name: Run Tests
       run: |
         pytest
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
