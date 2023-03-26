@@ -69,5 +69,4 @@ addopts = """\
     --cov=interai \
     --cov-fail-under=80 \
     --cov-report xml --cov-report term-missing:skip-covered \
-    -n auto \
-    --blockage"""
+    -n auto"""
